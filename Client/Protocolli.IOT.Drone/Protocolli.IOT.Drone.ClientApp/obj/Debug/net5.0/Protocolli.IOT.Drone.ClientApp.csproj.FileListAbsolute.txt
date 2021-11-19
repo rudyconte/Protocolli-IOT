@@ -1,0 +1,16 @@
+C:\Users\rconte\Documents\protocolli_IOT\Protocolli-IOT\Client\Protocolli.IOT.Drone\Protocolli.IOT.Drone.ClientApp\bin\Debug\net5.0\Protocolli.IOT.Drone.ClientApp.exe
+C:\Users\rconte\Documents\protocolli_IOT\Protocolli-IOT\Client\Protocolli.IOT.Drone\Protocolli.IOT.Drone.ClientApp\bin\Debug\net5.0\Protocolli.IOT.Drone.ClientApp.deps.json
+C:\Users\rconte\Documents\protocolli_IOT\Protocolli-IOT\Client\Protocolli.IOT.Drone\Protocolli.IOT.Drone.ClientApp\bin\Debug\net5.0\Protocolli.IOT.Drone.ClientApp.runtimeconfig.json
+C:\Users\rconte\Documents\protocolli_IOT\Protocolli-IOT\Client\Protocolli.IOT.Drone\Protocolli.IOT.Drone.ClientApp\bin\Debug\net5.0\Protocolli.IOT.Drone.ClientApp.runtimeconfig.dev.json
+C:\Users\rconte\Documents\protocolli_IOT\Protocolli-IOT\Client\Protocolli.IOT.Drone\Protocolli.IOT.Drone.ClientApp\bin\Debug\net5.0\Protocolli.IOT.Drone.ClientApp.dll
+C:\Users\rconte\Documents\protocolli_IOT\Protocolli-IOT\Client\Protocolli.IOT.Drone\Protocolli.IOT.Drone.ClientApp\bin\Debug\net5.0\ref\Protocolli.IOT.Drone.ClientApp.dll
+C:\Users\rconte\Documents\protocolli_IOT\Protocolli-IOT\Client\Protocolli.IOT.Drone\Protocolli.IOT.Drone.ClientApp\bin\Debug\net5.0\Protocolli.IOT.Drone.ClientApp.pdb
+C:\Users\rconte\Documents\protocolli_IOT\Protocolli-IOT\Client\Protocolli.IOT.Drone\Protocolli.IOT.Drone.ClientApp\obj\Debug\net5.0\Protocolli.IOT.Drone.ClientApp.csproj.AssemblyReference.cache
+C:\Users\rconte\Documents\protocolli_IOT\Protocolli-IOT\Client\Protocolli.IOT.Drone\Protocolli.IOT.Drone.ClientApp\obj\Debug\net5.0\Protocolli.IOT.Drone.ClientApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rconte\Documents\protocolli_IOT\Protocolli-IOT\Client\Protocolli.IOT.Drone\Protocolli.IOT.Drone.ClientApp\obj\Debug\net5.0\Protocolli.IOT.Drone.ClientApp.AssemblyInfoInputs.cache
+C:\Users\rconte\Documents\protocolli_IOT\Protocolli-IOT\Client\Protocolli.IOT.Drone\Protocolli.IOT.Drone.ClientApp\obj\Debug\net5.0\Protocolli.IOT.Drone.ClientApp.AssemblyInfo.cs
+C:\Users\rconte\Documents\protocolli_IOT\Protocolli-IOT\Client\Protocolli.IOT.Drone\Protocolli.IOT.Drone.ClientApp\obj\Debug\net5.0\Protocolli.IOT.Drone.ClientApp.csproj.CoreCompileInputs.cache
+C:\Users\rconte\Documents\protocolli_IOT\Protocolli-IOT\Client\Protocolli.IOT.Drone\Protocolli.IOT.Drone.ClientApp\obj\Debug\net5.0\Protocolli.IOT.Drone.ClientApp.dll
+C:\Users\rconte\Documents\protocolli_IOT\Protocolli-IOT\Client\Protocolli.IOT.Drone\Protocolli.IOT.Drone.ClientApp\obj\Debug\net5.0\ref\Protocolli.IOT.Drone.ClientApp.dll
+C:\Users\rconte\Documents\protocolli_IOT\Protocolli-IOT\Client\Protocolli.IOT.Drone\Protocolli.IOT.Drone.ClientApp\obj\Debug\net5.0\Protocolli.IOT.Drone.ClientApp.pdb
+C:\Users\rconte\Documents\protocolli_IOT\Protocolli-IOT\Client\Protocolli.IOT.Drone\Protocolli.IOT.Drone.ClientApp\obj\Debug\net5.0\Protocolli.IOT.Drone.ClientApp.genruntimeconfig.cache
