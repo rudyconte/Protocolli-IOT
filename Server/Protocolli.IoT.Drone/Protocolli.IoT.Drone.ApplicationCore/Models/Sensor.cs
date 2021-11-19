@@ -2,6 +2,6 @@
 {
 	public class Sensor
 	{
-		public double Timestamp { get; set; }
+		public DateTime Timestamp { get; set; }
 	}
 }
