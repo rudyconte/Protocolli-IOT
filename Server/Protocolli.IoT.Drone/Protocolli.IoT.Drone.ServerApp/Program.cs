@@ -13,6 +13,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IBatteriesService, BatteriesService>();
 builder.Services.AddScoped<IBatteriesRepository, BatteriesRepository>();
+builder.Services.AddScoped<IVelocitiesService, VelocitiesService>();
+builder.Services.AddScoped<IVelocitiesRepository, VelocitiesRepository>();
+builder.Services.AddScoped<IPositionsService, PositionsService>();
+builder.Services.AddScoped<IPositionsRepository, PositionsRepository>();
 
 var app = builder.Build();
 
