@@ -11,14 +11,14 @@ using System.Threading.Tasks;
 
 namespace Protocolli.IoT.Drone.Infrastructure.Data
 {
-    internal class PositionRepository
+    internal class BatteriesRepository
     {
         private static readonly char[] Token = "".ToCharArray();
 
         private readonly string bucketName = "protocolli-iot-drone";
         private readonly string orgId = "protocolli-iot";
 
-        public void Insert(Position position)
+        public void Insert(Battery battery)
         {
             var influxDBClient = InfluxDBClientFactory.Create("http://localhost:8086", Token);
 
@@ -30,11 +30,9 @@ namespace Protocolli.IoT.Drone.Infrastructure.Data
                 //
                 // Write by Point
                 //
-                var point = PointData.Measurement("position")
-                    .Field("x", position.X)
-                    .Field("y", position.Y)
-                    .Field("z", position.Z)
-                    .Timestamp(position.Timestamp, WritePrecision.S);
+                var point = PointData.Measurement("battery")
+                    .Field("level", battery.Level)
+                    .Timestamp(battery.Timestamp, WritePrecision.S);
 
                 writeApi.WritePoint(bucketName, orgId, point);
             }
