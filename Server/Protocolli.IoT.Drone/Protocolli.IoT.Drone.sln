@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Protocolli.IoT.Drone.Server
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Protocolli.IoT.Drone.ApplicationCore", "Protocolli.IoT.Drone.ApplicationCore\Protocolli.IoT.Drone.ApplicationCore.csproj", "{63907128-445F-4600-BAD9-311F579F1F81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Protocolli.IoT.Drone.Infrastructure", "Protocolli.IoT.Drone.Infrastructure\Protocolli.IoT.Drone.Infrastructure.csproj", "{8F88DACC-E262-47BC-A0D5-7571C6E43F81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Protocolli.IoT.Drone.Infrastructure", "Protocolli.IoT.Drone.Infrastructure\Protocolli.IoT.Drone.Infrastructure.csproj", "{8F88DACC-E262-47BC-A0D5-7571C6E43F81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

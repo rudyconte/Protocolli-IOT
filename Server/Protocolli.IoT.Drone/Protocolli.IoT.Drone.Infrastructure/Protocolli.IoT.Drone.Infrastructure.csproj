@@ -4,10 +4,12 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <UserSecretsId>356cf304-b73e-492b-b10f-0febc0f2443a</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="InfluxDB.Client" Version="3.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>

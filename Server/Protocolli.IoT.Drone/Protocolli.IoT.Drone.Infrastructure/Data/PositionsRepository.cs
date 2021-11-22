@@ -2,6 +2,8 @@
 using InfluxDB.Client.Api.Domain;
 using InfluxDB.Client.Core;
 using InfluxDB.Client.Writes;
+using Microsoft.Extensions.Configuration;
+using Protocolli.IoT.Drone.ApplicationCore.Interfaces.Data;
 using Protocolli.IoT.Drone.ServerApp.Models;
 using System;
 using System.Collections.Generic;
@@ -11,32 +13,34 @@ using System.Threading.Tasks;
 
 namespace Protocolli.IoT.Drone.Infrastructure.Data
 {
-    internal class PositionsRepository
+    public class PositionsRepository : IPositionsRepository
     {
-        private static readonly char[] Token = "".ToCharArray();
+        private readonly string _url;
+        private readonly char[] _token;
+        private readonly string _bucket;
+        private readonly string _organization;
 
-        private readonly string bucketName = "protocolli-iot-drone";
-        private readonly string orgId = "protocolli-iot";
+        public PositionsRepository(IConfiguration configuration)
+        {
+            _bucket = configuration.GetSection("InfluxDB")["bucket"];
+            _organization = configuration.GetSection("InfluxDB")["organization"];
+            _token = configuration.GetSection("InfluxDB")["organization"].ToCharArray();
+            _url = configuration.GetSection("InfluxDB")["url"];
+        }
 
         public void Insert(Position position)
         {
-            var influxDBClient = InfluxDBClientFactory.Create("http://localhost:8086", Token);
+            var influxDBClient = InfluxDBClientFactory.Create(_url, _token);
 
-            //
-            // Write Data
-            //
             using (var writeApi = influxDBClient.GetWriteApi())
             {
-                //
-                // Write by Point
-                //
                 var point = PointData.Measurement("position")
                     .Field("x", position.X)
                     .Field("y", position.Y)
                     .Field("z", position.Z)
                     .Timestamp(position.Timestamp, WritePrecision.S);
 
-                writeApi.WritePoint(bucketName, orgId, point);
+                writeApi.WritePoint(_bucket, _organization, point);
             }
         }
     }
