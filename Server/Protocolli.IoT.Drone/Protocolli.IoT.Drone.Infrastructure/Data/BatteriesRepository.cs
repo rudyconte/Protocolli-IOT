@@ -16,7 +16,7 @@ namespace Protocolli.IoT.Drone.Infrastructure.Data
     public class BatteriesRepository : IBatteriesRepository
     {
         private readonly string _url;
-        private readonly char[] _token;
+        private readonly string _token;
         private readonly string _bucket;
         private readonly string _organization;
 
@@ -24,13 +24,13 @@ namespace Protocolli.IoT.Drone.Infrastructure.Data
         {
             _bucket = configuration.GetSection("InfluxDB")["bucket"];
             _organization = configuration.GetSection("InfluxDB")["organization"];
-            _token = configuration.GetSection("InfluxDB")["organization"].ToCharArray();
+            _token = configuration.GetSection("InfluxDB")["token"];
             _url = configuration.GetSection("InfluxDB")["url"];
         }
 
         public void Insert(Battery battery)
         {
-            var influxDBClient = InfluxDBClientFactory.Create(_url, _token);
+            var influxDBClient = InfluxDBClientFactory.Create(_url, _token.ToCharArray());
 
             using (var writeApi = influxDBClient.GetWriteApi())
             {
