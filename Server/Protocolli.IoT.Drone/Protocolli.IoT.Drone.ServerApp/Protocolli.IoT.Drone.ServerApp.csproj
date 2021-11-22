@@ -10,4 +10,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Protocolli.IoT.Drone.ApplicationCore\Protocolli.IoT.Drone.ApplicationCore.csproj" />
+    <ProjectReference Include="..\Protocolli.IoT.Drone.Infrastructure\Protocolli.IoT.Drone.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

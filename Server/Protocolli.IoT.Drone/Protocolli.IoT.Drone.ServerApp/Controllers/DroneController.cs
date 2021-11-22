@@ -1,19 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Protocolli.IoT.Drone.ApplicationCore.Interfaces.Services;
+using Protocolli.IoT.Drone.ServerApp.Models;
 
 namespace Protocolli.IoT.Drone.ServerApp.Controllers
 {
-	public class DroneController
-	{
-		[Route("api/[controller]")]
-		[ApiController]
-		public class ProductController : ControllerBase
-		{
-			private readonly IProductService _productService;
 
-			public ProductController(IProductService productService)
-			{
-				_productService = productService;
-			}
+    [Route("api/[controller]")]
+    [ApiController]
+    public class BatteriesController : ControllerBase
+    {
+        private readonly IBatteriesService _batteriesService;
 
-		}
+        public BatteriesController(IBatteriesService batteriesService)
+        {
+            _batteriesService = batteriesService;
+        }
+
+        [HttpPost]
+        public IActionResult Insert(Battery battery)
+        {
+            _batteriesService.InsertBattery(battery);
+            return NoContent(); //204
+        }
+    }
 }
