@@ -1,6 +1,8 @@
-﻿using Protocolli.IOT.Drone.ClientApp.Models;
+﻿using Protocolli.IOT.Drone.ClientApp.Interfaces;
+using Protocolli.IOT.Drone.ClientApp.Models;
 using Protocolli.IOT.Drone.ClientApp.Protocols;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -10,19 +12,27 @@ namespace Protocolli.IOT.Drone.ClientApp
     {
         static async Task Main(string[] args)
         {
-            Battery battery = new();
-            Position position = new();
-            Velocity velocity = new();
+            List<ISensor> sensors = new();
+            List<IProtocol> routes = new();
 
-            Http sender = new();
+            //sensor index must match with its route index
+            sensors.Add(new Battery());
+            routes.Add(new Http("http://localhost:3333/battery"));
+
+            sensors.Add(new Position());
+            routes.Add(new Http("http://localhost:3333/positions"));
+
+            sensors.Add(new Velocity());
+            routes.Add(new Http("http://localhost:3333/velocities"));
 
             while (true)
             {
-                await sender.SendAsync(battery.GetJsonMeasure(),"/battery");
-                await sender.SendAsync(position.GetJsonMeasure(),"/position");
-                await sender.SendAsync(velocity.GetJsonMeasure(),"/velocity");
+                for (int i = 0; i < sensors.Count; i++)
+                {
+                    await routes[i].SendAsync(sensors[i].GetJsonMeasure());
+                }
 
-                Thread.Sleep(1000);
+                Thread.Sleep(2000);
 
             }
             

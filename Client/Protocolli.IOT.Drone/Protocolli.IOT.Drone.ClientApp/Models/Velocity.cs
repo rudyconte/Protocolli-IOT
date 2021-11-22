@@ -18,7 +18,7 @@ namespace Protocolli.IOT.Drone.ClientApp.Models
 
             Velocity velocity = new()
             {
-                Speed = (float)_random.NextDouble() * 1000,
+                Speed = (float)_random.NextDouble() * 100,
                 Timestamp = GetTime()
             };
             return JsonSerializer.Serialize(velocity);

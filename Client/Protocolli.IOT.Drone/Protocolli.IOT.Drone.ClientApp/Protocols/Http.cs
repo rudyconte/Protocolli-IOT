@@ -4,18 +4,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
+using Protocolli.IOT.Drone.ClientApp.Interfaces;
 
 namespace Protocolli.IOT.Drone.ClientApp.Protocols
 {
     internal class Http : IProtocol
     {
+        //set the URL of the API
+        private readonly string _url;
         private readonly HttpClient _httpClient = new();
-        private readonly string _url = "";
-        private string _complete_url;
-        public async Task SendAsync(string data, string path)
+
+        public Http(string url)
         {
-            _complete_url = _url + path;
-            await _httpClient.PostAsync(_complete_url, new StringContent(data, Encoding.UTF8, "application/json"));
+            _url = url;
+        }
+
+        public async Task SendAsync(string data)
+        {
+            try
+            {
+                var response = await _httpClient.PostAsync(_url, new StringContent(data, Encoding.UTF8, "application/json"));
+                Console.WriteLine($"{_url} responded with status code: {response.StatusCode}");
+            }
+            catch(HttpRequestException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            
         }
     }
 }
