@@ -2,6 +2,7 @@
 {
     public class Sensor
     {
+        public int DroneId { get; set; }
         public long Timestamp { get; set; }
     }
 }
