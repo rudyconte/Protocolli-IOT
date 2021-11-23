@@ -16,7 +16,7 @@ namespace Protocolli.IOT.Drone.ClientApp
             List<IProtocol> routes = new();
 
             //set here the base url of the API
-            string baseUrl = "http://localhost:3333";
+            string baseUrl = "https://localhost:3333/v1";
 
             Console.WriteLine("Quanti droni vuoi simulare?");
             int dronesNumber = int.Parse(Console.ReadLine());
