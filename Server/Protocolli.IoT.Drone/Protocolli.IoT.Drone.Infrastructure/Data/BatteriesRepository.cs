@@ -29,8 +29,8 @@ namespace Protocolli.IoT.Drone.Infrastructure.Data
             using (var writeApi = influxDBClient.GetWriteApi())
             {
                 var point = PointData
-                    .Measurement("battery")
-                    .Field("level", battery.Level)
+                    .Measurement($"drone{battery.DroneId}")
+                    .Field("battery_level", battery.Level)
                     .Timestamp(battery.Timestamp, WritePrecision.S);
 
                 writeApi.WritePoint(_bucket, _organization, point);
