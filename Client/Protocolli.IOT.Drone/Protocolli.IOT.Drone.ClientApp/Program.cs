@@ -25,7 +25,7 @@ namespace Protocolli.IOT.Drone.ClientApp
             {
                 //sensor index must match with its route index
                 sensors.Add(new Battery() { DroneId = i });
-                routes.Add(new Http(baseUrl + "/battery"));
+                routes.Add(new Http(baseUrl + "/batteries"));
 
                 sensors.Add(new Position() { DroneId = i });
                 routes.Add(new Http(baseUrl + "/positions"));
