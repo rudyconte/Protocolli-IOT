@@ -3,7 +3,7 @@ using InfluxDB.Client.Api.Domain;
 using InfluxDB.Client.Writes;
 using Microsoft.Extensions.Configuration;
 using Protocolli.IoT.Drone.ApplicationCore.Interfaces.Data;
-using Protocolli.IoT.Drone.ServerApp.Models;
+using Protocolli.IoT.Drone.ApplicationCore.Models;
 
 namespace Protocolli.IoT.Drone.Infrastructure.Data
 {

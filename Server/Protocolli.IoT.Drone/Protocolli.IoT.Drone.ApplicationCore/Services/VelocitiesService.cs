@@ -1,6 +1,6 @@
 ﻿using Protocolli.IoT.Drone.ApplicationCore.Interfaces.Data;
 using Protocolli.IoT.Drone.ApplicationCore.Interfaces.Services;
-using Protocolli.IoT.Drone.ServerApp.Models;
+using Protocolli.IoT.Drone.ApplicationCore.Models;
 
 namespace Protocolli.IoT.Drone.ApplicationCore.Services
 {

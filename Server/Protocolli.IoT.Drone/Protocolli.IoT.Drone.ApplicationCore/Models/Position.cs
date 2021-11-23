@@ -1,4 +1,4 @@
-﻿namespace Protocolli.IoT.Drone.ServerApp.Models
+﻿namespace Protocolli.IoT.Drone.ApplicationCore.Models
 {
     public class Position : Sensor
     {
