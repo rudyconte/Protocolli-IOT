@@ -15,13 +15,10 @@ namespace Protocolli.IOT.Drone.ClientApp.Models
 
         public string GetJsonMeasure()
         {
-
-            Velocity velocity = new()
-            {
-                Speed = (float)_random.NextDouble() * 100,
-                Timestamp = GetTime()
-            };
-            return JsonSerializer.Serialize(velocity);
+            Speed = (float)_random.NextDouble() * 200;
+            Timestamp = GetTime();
+            
+            return JsonSerializer.Serialize(this);
         }
     }
 }

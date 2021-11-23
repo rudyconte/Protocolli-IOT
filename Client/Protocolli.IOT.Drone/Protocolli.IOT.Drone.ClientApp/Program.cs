@@ -15,15 +15,26 @@ namespace Protocolli.IOT.Drone.ClientApp
             List<ISensor> sensors = new();
             List<IProtocol> routes = new();
 
-            //sensor index must match with its route index
-            sensors.Add(new Battery());
-            routes.Add(new Http("http://localhost:3333/battery"));
+            //set here the base url of the API
+            string baseUrl = "http://localhost:3333";
 
-            sensors.Add(new Position());
-            routes.Add(new Http("http://localhost:3333/positions"));
+            Console.WriteLine("Quanti droni vuoi simulare?");
+            int dronesNumber = int.Parse(Console.ReadLine());
 
-            sensors.Add(new Velocity());
-            routes.Add(new Http("http://localhost:3333/velocities"));
+            for (int i = 0; i < dronesNumber; i++)
+            {
+                //sensor index must match with its route index
+                sensors.Add(new Battery() { DroneId = i });
+                routes.Add(new Http(baseUrl + "/battery"));
+
+                sensors.Add(new Position() { DroneId = i });
+                routes.Add(new Http(baseUrl + "/positions"));
+
+                sensors.Add(new Velocity() { DroneId = i });
+                routes.Add(new Http(baseUrl + "/velocities"));
+            }
+
+           
 
             while (true)
             {

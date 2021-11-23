@@ -15,13 +15,10 @@ namespace Protocolli.IOT.Drone.ClientApp.Models
 
         public string GetJsonMeasure()
         {
-            Battery battery = new()
-            {
-                Level = _random.Next(0,100),
-                Timestamp = GetTime()
-            };
-
-            return JsonSerializer.Serialize(battery);
+            Level = _random.Next(0, 100);
+            Timestamp = GetTime();
+            
+            return JsonSerializer.Serialize(this);
         }
     }
 }

@@ -17,14 +17,12 @@ namespace Protocolli.IOT.Drone.ClientApp.Models
 
         public string GetJsonMeasure()
         {
-            Position position = new()
-            {
-                X = _random.NextDouble() * 10000,
-                Y = _random.NextDouble() * 10000,
-                Z = _random.NextDouble() * 800,
-                Timestamp = GetTime()
-            };
-            return JsonSerializer.Serialize(position);
+            X = _random.NextDouble() * 180;
+            Y = _random.NextDouble() * 90;
+            Z = _random.NextDouble() * 4000;
+            Timestamp = GetTime();
+            
+            return JsonSerializer.Serialize(this);
         }
     }
 }
