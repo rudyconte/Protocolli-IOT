@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Protocolli.IOT.Drone.ClientApp.Interfaces
 {
-    internal interface ISensor
+    internal interface IDroneStatus
     {
-        string GetJsonMeasure();
+        public string SimulateDeviceStatus();
     }
 }
