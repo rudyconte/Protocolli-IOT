@@ -31,13 +31,8 @@ builder.Services.AddVersionedApiExplorer(options =>
 builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 builder.Services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>());
 
-builder.Services.AddScoped<IBatteriesService, BatteriesService>();
-builder.Services.AddScoped<IBatteriesRepository, BatteriesRepository>();
-builder.Services.AddScoped<IVelocitiesService, VelocitiesService>();
-builder.Services.AddScoped<IVelocitiesRepository, VelocitiesRepository>();
-builder.Services.AddScoped<IPositionsService, PositionsService>();
-builder.Services.AddScoped<IPositionsRepository, PositionsRepository>();
-
+builder.Services.AddScoped<IDroneStatusService, DroneStatusService>();
+builder.Services.AddScoped<IDroneStatusRepository, DroneStatusRepository>();
 
 var app = builder.Build();
 
