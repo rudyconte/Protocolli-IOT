@@ -12,35 +12,24 @@ namespace Protocolli.IOT.Drone.ClientApp
     {
         static async Task Main(string[] args)
         {
-            List<ISensor> sensors = new();
-            List<IProtocol> routes = new();
-
-            //set here the base url of the API
-            string baseUrl = "https://localhost:3333/v1";
+            List<IDroneStatus> devices = new();
+            IProtocol sender = new Http();
 
             Console.WriteLine("Quanti droni vuoi simulare?");
             int dronesNumber = int.Parse(Console.ReadLine());
 
             for (int i = 0; i < dronesNumber; i++)
             {
-                //sensor index must match with its route index
-                sensors.Add(new Battery() { DroneId = i });
-                routes.Add(new Http(baseUrl + "/batteries"));
-
-                sensors.Add(new Position() { DroneId = i });
-                routes.Add(new Http(baseUrl + "/positions"));
-
-                sensors.Add(new Velocity() { DroneId = i });
-                routes.Add(new Http(baseUrl + "/velocities"));
+                devices.Add(new DroneStatus() { DroneId = i });
             }
 
            
 
             while (true)
             {
-                for (int i = 0; i < sensors.Count; i++)
+                for (int i = 0; i < devices.Count; i++)
                 {
-                    await routes[i].SendAsync(sensors[i].GetJsonMeasure());
+                    await sender.SendAsync(devices[i].SimulateDeviceStatus());
                 }
 
                 Thread.Sleep(2000);
