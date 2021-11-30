@@ -1,6 +1,6 @@
 ﻿namespace Protocolli.IoT.Drone.ApplicationCore.Models
 {
-    public class Position : Sensor
+    public class Position
     {
         public double X { get; set; }
         public double Y { get; set; }
