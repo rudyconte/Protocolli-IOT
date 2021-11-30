@@ -2,7 +2,8 @@
 
 namespace Protocolli.IoT.Drone.ApplicationCore.Interfaces.Data
 {
-    public interface IBatteriesRepository : IRepository<Battery>
+    public interface IDroneStatusRepository
     {
+        void Insert(DroneStatus value);
     }
 }
