@@ -2,8 +2,8 @@
 
 namespace Protocolli.IoT.Drone.ApplicationCore.Interfaces.Services
 {
-    public interface IVelocitiesService
+    public interface IDroneStatusService
     {
-        void InsertVelocity(Velocity velocity);
+        void InsertDroneStatus(DroneStatus droneStatus);
     }
 }
