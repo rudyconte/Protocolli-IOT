@@ -8,21 +8,22 @@ using System.Threading.Tasks;
 
 namespace Protocolli.IOT.Drone.ClientApp.Models
 {
-    internal class Position : Sensor, ISensor
+    internal class Position
     {
         private readonly Random _random = new();
         public double X { get; set; }
         public double Y { get; set; }
         public double Z { get; set; }
 
-        public string GetJsonMeasure()
+        public Position SimulatePosition()
         {
+
             X = _random.NextDouble() * 180;
             Y = _random.NextDouble() * 90;
             Z = _random.NextDouble() * 4000;
-            Timestamp = GetTime();
-            
-            return JsonSerializer.Serialize(this);
+
+            return this;
+
         }
     }
 }

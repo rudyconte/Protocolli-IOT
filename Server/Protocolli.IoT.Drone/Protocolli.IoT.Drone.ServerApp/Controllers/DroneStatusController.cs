@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Protocolli.IoT.Drone.ApplicationCore.Interfaces.Services;
 using Protocolli.IoT.Drone.ApplicationCore.Models;
 
@@ -7,26 +8,25 @@ namespace Protocolli.IoT.Drone.ServerApp.Controllers
     [ApiVersion("1.0")]
     [Route("v{version:apiVersion}/[controller]")]
     [ApiController]
-    public class PositionsController : ControllerBase
+    public class DroneStatusController : ControllerBase
     {
-        private readonly IPositionsService _positionsService;
+        private readonly IDroneStatusService _droneStatusService;
 
-        public PositionsController(IPositionsService positionsService)
+        public DroneStatusController(IDroneStatusService droneStatusService)
         {
-            _positionsService = positionsService;
+            _droneStatusService = droneStatusService;
         }
 
-        // POST positions
+        // POST batteries
         [HttpPost]
-        public IActionResult Insert(Position position)
+        public IActionResult Insert(DroneStatus droneStatus)
         {
             if (ModelState.IsValid)
             {
-                _positionsService.InsertPosition(position);
+                _droneStatusService.InsertDroneStatus(droneStatus);
                 return NoContent(); //204
             }
             return BadRequest(ModelState);
         }
     }
 }
-
