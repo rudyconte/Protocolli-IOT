@@ -19,7 +19,7 @@ namespace Protocolli.IOT.Drone.ClientApp.Models
         public float Battery { get; set; }
         public long Timestamp { get; set; }
 
-        public string SimulateDeviceStatus()
+        public DroneStatus SimulateDeviceStatus()
         {
             Timestamp = DateTimeOffset.Now.ToUnixTimeSeconds();
 
@@ -27,7 +27,7 @@ namespace Protocolli.IOT.Drone.ClientApp.Models
             Battery = _random.Next(0, 100);
             Position = _position.SimulatePosition();
 
-            return JsonSerializer.Serialize(this);
+            return this;
         }
     }
 }

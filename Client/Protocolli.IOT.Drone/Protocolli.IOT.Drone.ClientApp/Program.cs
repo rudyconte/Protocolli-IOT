@@ -13,7 +13,7 @@ namespace Protocolli.IOT.Drone.ClientApp
         static async Task Main(string[] args)
         {
             List<IDroneStatus> devices = new();
-            IProtocol sender = new Http();
+            IProtocol sender = new Mqtt();
 
             Console.WriteLine("Quanti droni vuoi simulare?");
             int dronesNumber = int.Parse(Console.ReadLine());

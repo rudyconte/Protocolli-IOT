@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Configuration;
 using Protocolli.IOT.Drone.ClientApp.Interfaces;
+using Protocolli.IOT.Drone.ClientApp.Models;
+using System.Text.Json;
 
 namespace Protocolli.IOT.Drone.ClientApp.Protocols
 {
@@ -15,10 +17,11 @@ namespace Protocolli.IOT.Drone.ClientApp.Protocols
         private readonly string _url  = ConfigurationManager.AppSettings["httpAPI"];
         private readonly HttpClient _httpClient = new();
 
-        public async Task SendAsync(string data)
+        public async Task SendAsync(DroneStatus status)
         {
             try
             {
+                string data = JsonSerializer.Serialize(status);
                 var response = await _httpClient.PostAsync(_url, new StringContent(data, Encoding.UTF8, "application/json"));
                 Console.WriteLine($"{_url} responded with status code: {response.StatusCode}");
             }
