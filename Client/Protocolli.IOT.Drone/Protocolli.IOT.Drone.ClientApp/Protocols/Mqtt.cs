@@ -1,7 +1,5 @@
 ﻿using MQTTnet;
 using MQTTnet.Client;
-using MQTTnet.Client.Connecting;
-using MQTTnet.Client.Disconnecting;
 using MQTTnet.Client.Options;
 using Protocolli.IOT.Drone.ClientApp.Interfaces;
 using Protocolli.IOT.Drone.ClientApp.Models;

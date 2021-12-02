@@ -1,0 +1,17 @@
+TOPIC A CUI SI PUBBLICA:
+
+protocolliIOT/stato/drone{id}
+
+ESEMPIO PAYLOAD (STATO DRONE):
+
+{
+    "DroneId": 1,
+    "Position": {
+        "X": 147.58158265034743,
+        "Y": 81.36032174404725,
+        "Z": 1726.178399159656
+    },
+    "Velocity": 192.17404,
+    "Battery": 65,
+    "Timestamp": 1638461578
+}
