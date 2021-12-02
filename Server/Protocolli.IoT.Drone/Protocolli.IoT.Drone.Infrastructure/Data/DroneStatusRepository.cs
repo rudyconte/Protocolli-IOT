@@ -29,8 +29,7 @@ namespace Protocolli.IoT.Drone.Infrastructure.Data
             using (var writeApi = influxDBClient.GetWriteApi())
             {
                 var point = PointData
-                    .Measurement("drones_status")
-                    .Tag("drone_id", $"drone{droneStatus.DroneId}")
+                    .Measurement($"drone{droneStatus.DroneId}")
                     .Field("battery_level", droneStatus.Battery)
                     .Field("velocity_speed", droneStatus.Velocity)
                     .Field("position_x", droneStatus.Position.X)
@@ -40,21 +39,6 @@ namespace Protocolli.IoT.Drone.Infrastructure.Data
 
                 writeApi.WritePoint(_bucket, _organization, point);
             }
-        }
-
-        public IEnumerable<DroneStatus> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<DroneStatus> GetAllById(int droneId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public DroneStatus GetLastById(int droneId)
-        {
-            throw new NotImplementedException();
         }
     }
 }
