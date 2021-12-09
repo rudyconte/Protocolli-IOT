@@ -62,7 +62,6 @@ namespace Protocolli.IOT.Drone.ClientApp.Protocols
             var message = new MqttApplicationMessageBuilder()
             .WithTopic($"{_topic}{id}")
             .WithPayload(data)
-            .WithExactlyOnceQoS()
             .WithRetainFlag()
             .Build();
 

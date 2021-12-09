@@ -2,7 +2,9 @@ TOPIC A CUI SI PUBBLICA STATI:
 
 protocolliIOT/stato/drone{id}
 
-QOS: 0 --> non è essenziale ricevere tutti gli stati
+PUBLISH STATI:
+QOS: 1 --> non è essenziale ricevere tutti gli stati ma mi serve QOS 1 o 2 per poter persistere su broker messaggi (clean session: false)
+Retain Flag: True --> voglio mantenere ultimi stati per popolare la dashboard
 
 ESEMPIO PAYLOAD (STATO DRONE):
 
@@ -19,12 +21,25 @@ ESEMPIO PAYLOAD (STATO DRONE):
 }
 
 
+CONNECT RICEVITORE STATI:
+Clean Session: False --> Voglio salvare sul db anche stati pubblicati quando il ricevitore di stati era offline
+Non serve gestione LWT per ricevitore di stati
+
+##############################################################################
 TOPIC A CUI SI PUBBLICA COMANDI:
 
 protocolliIOT/comando/drone{id}
 
-QOS: 2 --> voglio che comando arrivi esattamente 1 volta 
+PUBLISH COMANDI
+QOS: 2 --> voglio che comando arrivi esattamente 1 volta (e che sia )
+Retain Flag: False --> non mi è utile preservare ultimi comandi (al subscribe riceverei comandi vecchi)
 
 ESEMPIO PAYLOAD
 
 "apri corsa"
+
+CONNECT DRONE PER RICEVERE COMANDI:
+Clean Session: False --> Mi è utile che il drone quando si riconnette riceva comandi inviati quando era offline (es comando di ritorno alla base 
+inviato dopo perdita controllo del drone)
+LWT settata per per gestire disconnessione drone: invia messaggio a topic "protocolliIOT/stato/drone{id}/offline"
+on connect pubblica messaggio a topic "protocolliIOT/stato/drone{id}/online"

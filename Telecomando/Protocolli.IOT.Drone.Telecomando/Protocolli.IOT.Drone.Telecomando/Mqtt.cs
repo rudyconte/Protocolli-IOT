@@ -61,7 +61,7 @@ namespace Protocolli.IOT.Drone.Telecomando
             .WithTopic($"protocolliIOT/comando/drone{droneId}")
             .WithPayload(command)
             .WithExactlyOnceQoS()
-            .WithRetainFlag()
+            //.WithRetainFlag()
             .Build();
 
             //publish message

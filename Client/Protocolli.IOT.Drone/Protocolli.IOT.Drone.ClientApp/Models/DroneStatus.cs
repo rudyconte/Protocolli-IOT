@@ -89,18 +89,12 @@ namespace Protocolli.IOT.Drone.ClientApp.Models
         //Manage received commands
         public void ManageMessages()
         {
-
-
             //when a message is received save it to influxdb
             _mqttClient.UseApplicationMessageReceivedHandler(e =>
             {
-                
-
                 string Payload = Encoding.UTF8.GetString(e.ApplicationMessage.Payload);
 
                 Console.WriteLine($"### RECEIVED COMMAND FOR DRONE {this.DroneId}: {Payload} ###");
-
-
             });
         }
     }
