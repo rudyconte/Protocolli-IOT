@@ -20,7 +20,11 @@ namespace Protocolli.IOT.Drone.ClientApp
 
             for (int i = 0; i < dronesNumber; i++)
             {
-                devices.Add(new DroneStatus() { DroneId = i });
+                DroneStatus status = new DroneStatus();
+                status.DroneId = i;
+                status.SubscribeToTopic();
+                status.ManageMessages();
+                devices.Add(status);
             }
 
            

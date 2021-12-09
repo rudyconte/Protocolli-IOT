@@ -2,6 +2,8 @@ TOPIC A CUI SI PUBBLICA STATI:
 
 protocolliIOT/stato/drone{id}
 
+QOS: 0 --> non è essenziale ricevere tutti gli stati
+
 ESEMPIO PAYLOAD (STATO DRONE):
 
 {
@@ -20,3 +22,9 @@ ESEMPIO PAYLOAD (STATO DRONE):
 TOPIC A CUI SI PUBBLICA COMANDI:
 
 protocolliIOT/comando/drone{id}
+
+QOS: 2 --> voglio che comando arrivi esattamente 1 volta 
+
+ESEMPIO PAYLOAD
+
+"apri corsa"
