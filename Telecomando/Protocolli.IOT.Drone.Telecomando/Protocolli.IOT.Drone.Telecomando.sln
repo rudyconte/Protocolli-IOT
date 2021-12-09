@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Protocolli.IOT.Drone.Telecomando", "Protocolli.IOT.Drone.Telecomando\Protocolli.IOT.Drone.Telecomando.csproj", "{D723E797-0EAC-4A41-8715-15C00521121F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D723E797-0EAC-4A41-8715-15C00521121F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D723E797-0EAC-4A41-8715-15C00521121F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D723E797-0EAC-4A41-8715-15C00521121F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D723E797-0EAC-4A41-8715-15C00521121F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DFD2FA0B-3DF0-4D1D-9FC7-C58D0878BBF8}
+	EndGlobalSection
+EndGlobal

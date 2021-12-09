@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "d723e797-0eac-4a41-8715-15c00521121f": {
+      "ProjectGuid": "d723e797-0eac-4a41-8715-15c00521121f",
+      "DisplayName": "Protocolli.IOT.Drone.Telecomando",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
