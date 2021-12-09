@@ -1,4 +1,4 @@
-TOPIC A CUI SI PUBBLICA:
+TOPIC A CUI SI PUBBLICA STATI:
 
 protocolliIOT/stato/drone{id}
 
@@ -15,3 +15,8 @@ ESEMPIO PAYLOAD (STATO DRONE):
     "Battery": 65,
     "Timestamp": 1638461578
 }
+
+
+TOPIC A CUI SI PUBBLICA COMANDI:
+
+protocolliIOT/comando/drone{id}

@@ -5,6 +5,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <UserSecretsId>86231813-7952-44df-822d-03d95d168646</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,6 +17,12 @@
   <ItemGroup>
     <ProjectReference Include="..\Protocolli.IoT.Drone.ApplicationCore\Protocolli.IoT.Drone.ApplicationCore.csproj" />
     <ProjectReference Include="..\Protocolli.IoT.Drone.Infrastructure\Protocolli.IoT.Drone.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

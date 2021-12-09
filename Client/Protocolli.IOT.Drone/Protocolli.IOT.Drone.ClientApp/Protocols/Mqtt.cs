@@ -5,6 +5,7 @@ using Protocolli.IOT.Drone.ClientApp.Interfaces;
 using Protocolli.IOT.Drone.ClientApp.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -16,7 +17,10 @@ namespace Protocolli.IOT.Drone.ClientApp.Protocols
     internal class Mqtt : IProtocol
     {
         private readonly IMqttClient _mqttClient;
-        
+        private readonly string _url = ConfigurationManager.AppSettings["brokerMQTT"];
+        private readonly int _port = int.Parse(ConfigurationManager.AppSettings["portMQTT"]);
+        private readonly string _topic = ConfigurationManager.AppSettings["topicMQTT"];
+
         public Mqtt()
         {
             // Create a new MQTT client.
@@ -25,24 +29,54 @@ namespace Protocolli.IOT.Drone.ClientApp.Protocols
 
             // Use TCP connection.
             var options = new MqttClientOptionsBuilder()
-                .WithTcpServer("127.0.0.1", 1883) // Port is optional
+                .WithTcpServer(_url, _port) // Port is optional
                 .Build();
 
+            //connect to broker
             _mqttClient.ConnectAsync(options, CancellationToken.None);
+
+            //try to riconnect if disconnected
+            _mqttClient.UseDisconnectedHandler(async e =>
+            {
+                Console.WriteLine("### DISCONNECTED FROM SERVER ###");
+                await Task.Delay(TimeSpan.FromSeconds(5));
+
+                try
+                {
+                    await _mqttClient.ConnectAsync(options, CancellationToken.None); // Since 3.0.5 with CancellationToken
+                }
+                catch
+                {
+                    Console.WriteLine("### RECONNECTING FAILED ###");
+                }
+            });
         }
 
         public async Task SendAsync(DroneStatus status)
         {
             int id = status.DroneId;
             string data = JsonSerializer.Serialize(status);
+
+            //create message to publish
             var message = new MqttApplicationMessageBuilder()
-            .WithTopic($"protocolliIOT/stato/drone{id}")
+            .WithTopic($"{_topic}{id}")
             .WithPayload(data)
             .WithExactlyOnceQoS()
             .WithRetainFlag()
             .Build();
 
-            await _mqttClient.PublishAsync(message, CancellationToken.None);
+            //publish message
+            try 
+            {
+                await _mqttClient.PublishAsync(message, CancellationToken.None);
+
+                Console.WriteLine($"Published Drone Status to topic: {_topic}{id}");
+            }
+            catch (MQTTnet.Exceptions.MqttCommunicationException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
         }
 
     }
