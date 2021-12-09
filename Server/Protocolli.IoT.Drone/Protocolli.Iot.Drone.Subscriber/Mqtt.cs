@@ -94,7 +94,5 @@ namespace Protocolli.Iot.Drone.Subscriber
                     
             });
         }
-
-
     }
 }

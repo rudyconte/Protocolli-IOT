@@ -1564,19 +1564,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Mattia Ros\\.nuget\\packages\\": {}
+    "C:\\Users\\rconte\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Mattia Ros\\Desktop\\Protocolli IOT\\Protocolli-IOT\\Telecomando\\Protocolli.IOT.Drone.Telecomando\\Protocolli.IOT.Drone.Telecomando\\Protocolli.IOT.Drone.Telecomando.csproj",
+      "projectUniqueName": "C:\\Users\\rconte\\Documents\\protocolli_IOT\\Protocolli-IOT\\Telecomando\\Protocolli.IOT.Drone.Telecomando\\Protocolli.IOT.Drone.Telecomando\\Protocolli.IOT.Drone.Telecomando.csproj",
       "projectName": "Protocolli.IOT.Drone.Telecomando",
-      "projectPath": "C:\\Users\\Mattia Ros\\Desktop\\Protocolli IOT\\Protocolli-IOT\\Telecomando\\Protocolli.IOT.Drone.Telecomando\\Protocolli.IOT.Drone.Telecomando\\Protocolli.IOT.Drone.Telecomando.csproj",
-      "packagesPath": "C:\\Users\\Mattia Ros\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Mattia Ros\\Desktop\\Protocolli IOT\\Protocolli-IOT\\Telecomando\\Protocolli.IOT.Drone.Telecomando\\Protocolli.IOT.Drone.Telecomando\\obj\\",
+      "projectPath": "C:\\Users\\rconte\\Documents\\protocolli_IOT\\Protocolli-IOT\\Telecomando\\Protocolli.IOT.Drone.Telecomando\\Protocolli.IOT.Drone.Telecomando\\Protocolli.IOT.Drone.Telecomando.csproj",
+      "packagesPath": "C:\\Users\\rconte\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\rconte\\Documents\\protocolli_IOT\\Protocolli-IOT\\Telecomando\\Protocolli.IOT.Drone.Telecomando\\Protocolli.IOT.Drone.Telecomando\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Mattia Ros\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\rconte\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

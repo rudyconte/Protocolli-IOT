@@ -69,7 +69,7 @@ namespace Protocolli.IOT.Drone.Telecomando
             {
                 await _mqttClient.PublishAsync(message, CancellationToken.None);
 
-                Console.WriteLine($"Published Drone Status to topic: {_topic}{id}");
+                Console.WriteLine($"Sent command");
             }
             catch (MQTTnet.Exceptions.MqttCommunicationException ex)
             {

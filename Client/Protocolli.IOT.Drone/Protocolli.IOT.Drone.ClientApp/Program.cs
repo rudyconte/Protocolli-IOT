@@ -18,6 +18,8 @@ namespace Protocolli.IOT.Drone.ClientApp
             Console.WriteLine("Quanti droni vuoi simulare?");
             int dronesNumber = int.Parse(Console.ReadLine());
 
+            
+
             for (int i = 0; i < dronesNumber; i++)
             {
                 DroneStatus status = new DroneStatus();
