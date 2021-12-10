@@ -1,9 +1,9 @@
-﻿using Microsoft.Extensions.Configuration;
-using MQTTnet;
+﻿using MQTTnet;
 using MQTTnet.Client;
 using MQTTnet.Client.Options;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -14,8 +14,10 @@ namespace Protocolli.IOT.Drone.Telecomando
     public class Mqtt
     {
         private readonly IMqttClient _mqttClient;
-        //private readonly MqttFactory _factory;
         private readonly IMqttClientOptions _options;
+        private readonly string _url = ConfigurationManager.AppSettings["brokerMQTT"];
+        private readonly int _port = int.Parse(ConfigurationManager.AppSettings["portMQTT"]);
+        private readonly string _topic = ConfigurationManager.AppSettings["topicMQTTcommands"];
 
         public Mqtt()
         {
@@ -25,7 +27,8 @@ namespace Protocolli.IOT.Drone.Telecomando
 
             // Use TCP connection.
             _options = new MqttClientOptionsBuilder()
-                .WithTcpServer("127.0.0.1",1883)
+                .WithTcpServer(_url,_port)
+                .WithCleanSession(false) //voglio che drone riceva comandi inviati mentre era offline
                 .Build();
 
         }
@@ -58,10 +61,10 @@ namespace Protocolli.IOT.Drone.Telecomando
 
             //create message to publish
             var message = new MqttApplicationMessageBuilder()
-            .WithTopic($"protocolliIOT/comando/drone{droneId}")
+            .WithTopic($"{_topic}{droneId}")
             .WithPayload(command)
-            .WithExactlyOnceQoS()
-            //.WithRetainFlag()
+            .WithExactlyOnceQoS() //QOS2 --> voglio che comando venga inviato esattamente 1 volta sola
+            .WithRetainFlag(false) //non mi interessa al subscribe ricevere l'ultimo comando inviato
             .Build();
 
             //publish message

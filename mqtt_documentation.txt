@@ -3,7 +3,7 @@ TOPIC A CUI SI PUBBLICA STATI:
 protocolliIOT/stato/drone{id}
 
 PUBLISH STATI:
-QOS: 1 --> non è essenziale ricevere tutti gli stati ma mi serve QOS 1 o 2 per poter persistere su broker messaggi (clean session: false)
+QOS: 0 --> non è essenziale ricevere tutti gli stati poichè vengono inviati ad alta frequenza (mi interessa di più la performance)
 Retain Flag: True --> voglio mantenere ultimi stati per popolare la dashboard
 
 ESEMPIO PAYLOAD (STATO DRONE):
@@ -22,7 +22,7 @@ ESEMPIO PAYLOAD (STATO DRONE):
 
 
 CONNECT RICEVITORE STATI:
-Clean Session: False --> Voglio salvare sul db anche stati pubblicati quando il ricevitore di stati era offline
+Clean Session: True --> Non mi interssa perdere stati pubblicati quando il ricevitore di stati è offline e non voglio rimepire il broker di messaggi
 Non serve gestione LWT per ricevitore di stati
 
 ##############################################################################

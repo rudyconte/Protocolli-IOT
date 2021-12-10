@@ -9,6 +9,6 @@ namespace Protocolli.IOT.Drone.ClientApp.Interfaces
 {
     internal interface IProtocol
     {
-        public Task SendAsync(DroneStatus status);
+        public Task SendAsync(IDroneStatus status);
     }
 }

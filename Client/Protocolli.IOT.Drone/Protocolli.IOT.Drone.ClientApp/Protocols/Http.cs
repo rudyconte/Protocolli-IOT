@@ -17,11 +17,11 @@ namespace Protocolli.IOT.Drone.ClientApp.Protocols
         private readonly string _url  = ConfigurationManager.AppSettings["httpAPI"];
         private readonly HttpClient _httpClient = new();
 
-        public async Task SendAsync(DroneStatus status)
+        public async Task SendAsync(IDroneStatus status)
         {
             try
             {
-                string data = JsonSerializer.Serialize(status);
+                string data = status.SimulateDeviceStatus();
                 var response = await _httpClient.PostAsync(_url, new StringContent(data, Encoding.UTF8, "application/json"));
                 Console.WriteLine($"{_url} responded with status code: {response.StatusCode}");
             }

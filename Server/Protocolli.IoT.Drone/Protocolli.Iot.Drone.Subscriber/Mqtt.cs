@@ -31,6 +31,7 @@ namespace Protocolli.Iot.Drone.Subscriber
             _options = new MqttClientOptionsBuilder()
                 .WithTcpServer(configuration
                 .GetSection("MQTT")["brokerAddress"], int.Parse(configuration.GetSection("MQTT")["port"]))
+                .WithCleanSession(true) //per non riempire broker di messaggi 
                 .Build();
         }
 

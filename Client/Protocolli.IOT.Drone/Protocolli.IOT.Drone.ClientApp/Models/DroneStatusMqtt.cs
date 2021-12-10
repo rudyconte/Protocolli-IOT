@@ -2,27 +2,25 @@
 using MQTTnet.Client;
 using MQTTnet.Client.Options;
 using MQTTnet.Client.Subscribing;
-using Protocolli.IOT.Drone.ClientApp.Interfaces;
-using Protocolli.IOT.Drone.ClientApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Text;
-using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Protocolli.IOT.Drone.ClientApp.Protocols
+namespace Protocolli.IOT.Drone.ClientApp.Models
 {
-    internal class Mqtt : IProtocol
+    internal class DroneStatusMqtt: DroneStatus
     {
         private readonly IMqttClient _mqttClient;
         private readonly string _url = ConfigurationManager.AppSettings["brokerMQTT"];
         private readonly int _port = int.Parse(ConfigurationManager.AppSettings["portMQTT"]);
-        private readonly string _topic = ConfigurationManager.AppSettings["topicMQTT"];
+        private readonly string _topic = ConfigurationManager.AppSettings["topicMQTTcommands"];
 
-        public Mqtt()
+        //enable drone status to receive commands via mqtt
+        public DroneStatusMqtt()
         {
             // Create a new MQTT client.
             var factory = new MqttFactory();
@@ -31,7 +29,7 @@ namespace Protocolli.IOT.Drone.ClientApp.Protocols
             // Use TCP connection.
             var options = new MqttClientOptionsBuilder()
                 .WithTcpServer(_url, _port) // Port is optional
-                .WithCleanSession(true) //per non riempire broker di messaggi 
+                .WithCleanSession(false) //voglio che drone riceva comandi inviati mentre era offline
                 .Build();
 
             //connect to broker
@@ -52,35 +50,27 @@ namespace Protocolli.IOT.Drone.ClientApp.Protocols
                     Console.WriteLine("### RECONNECTING FAILED ###");
                 }
             });
-        }
 
-        public async Task SendAsync(IDroneStatus status)
-        {
-            int id = status.GetDroneId();
-            string data = status.SimulateDeviceStatus();
-
-            //create message to publish
-            var message = new MqttApplicationMessageBuilder()
-            .WithTopic($"{_topic}{id}")
-            .WithPayload(data)
-            .WithRetainFlag(true) //voglio mantenere ultimi stati per popolare dashboard
-            .WithAtMostOnceQoS() //QOS 0 
-            .Build();
-
-            //publish message
-            try 
+            //when a message is received save it to influxdb
+            _mqttClient.UseApplicationMessageReceivedHandler(e =>
             {
-                await _mqttClient.PublishAsync(message, CancellationToken.None);
+                string Payload = Encoding.UTF8.GetString(e.ApplicationMessage.Payload);
 
-                Console.WriteLine($"Published Drone Status to topic: {_topic}{id}");
-            }
-            catch (MQTTnet.Exceptions.MqttCommunicationException ex)
+                Console.WriteLine($"### RECEIVED COMMAND FOR DRONE {DroneId}: {Payload} ###");
+            });
+
+            //when connected subscribe to topic
+            _mqttClient.UseConnectedHandler(async e =>
             {
-                Console.WriteLine(ex.Message);
-            }
+                Console.WriteLine("### CONNECTED WITH SERVER ###");
+                await _mqttClient.SubscribeAsync(new MqttClientSubscribeOptionsBuilder()
+                    .WithTopicFilter($"{_topic}{DroneId}")
+                    .Build());
+
+                Console.WriteLine($"### SUBSCRIBED TO TOPIC:  {_topic}{DroneId}###");
+            });
+
             
         }
-
-        
     }
 }
