@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <title>DroneBoard</title>
+</head>
+<body>
+    <h1>DroneBoard</h1>
+    <ul id="status"></ul>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.js" type="text/javascript"></script>
+<script>
+    // Create a client instance
+    client = new Paho.MQTT.Client("127.0.0.1", Number(9001), "clientId");
+
+    // set callback handlers
+    client.onConnectionLost = onConnectionLost;
+    client.onMessageArrived = onMessageArrived;
+
+    // connect the client
+    client.connect({onSuccess:onConnect});
+
+    // called when the client connects
+    function onConnect() {
+        // Once a connection has been made, make a subscription and send a message.
+        console.log("onConnect");
+        client.subscribe("protocolliIOT/stato/#");
+    }
+
+    // called when the client loses its connection
+    function onConnectionLost(responseObject) {
+        if (responseObject.errorCode !== 0) {
+            console.log("onConnectionLost:"+responseObject.errorMessage);
+        }
+    }
+
+    //updates the info of the board
+    function updateBoard(item,data){
+        item.innerHTML = `<h2> Drone ${data.DroneId}</h2> 
+            <p><span class="type">Position X:</span> ${data.Position.X}</p>
+            <p><span class="type">Position Y:</span> ${data.Position.Y}</p>
+            <p><span class="type">Elevation:</span> ${data.Position.Z} m</p>
+            <p><span class="type">Battery Level:</span> ${data.Battery} %</p>
+            <p><span class="type">Speed:</span> ${data.Velocity} Km/h</p>`;
+    }
+
+    //store id of drones already on the board
+    let drones = [];
+    // called when a message arrives
+    function onMessageArrived(message) {
+        var ul = document.getElementById("status");
+        //get the payload
+        var status = JSON.parse(message.payloadString);
+        //if the drone isn't already in the board add it
+        if(!drones.includes(status.DroneId)){
+            drones.push(status.DroneId);
+            var li = document.createElement("li");
+            li.setAttribute("id",status.DroneId)
+            updateBoard(li,status);
+            ul.appendChild(li);
+        }
+        //if the drone is already on the board update it
+        else{
+            var li = document.getElementById(status.DroneId);
+            updateBoard(li,status);
+        }
+    }
+</script>
+</html>
