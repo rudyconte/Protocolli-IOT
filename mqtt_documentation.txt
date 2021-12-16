@@ -43,3 +43,27 @@ Clean Session: False --> Mi è utile che il drone quando si riconnette riceva co
 inviato dopo perdita controllo del drone)
 LWT settata per per gestire disconnessione drone: invia messaggio a topic "protocolliIOT/stato/drone{id}/offline"
 on connect pubblica messaggio a topic "protocolliIOT/stato/drone{id}/online"
+
+#############################################################################
+PAGINA DASHBOARD
+Usa un client javascript per aprire la connessione con web socket alla porta 9001 del broker per ricevere gli stati dei droni. 
+Per farlo funzionare è stato usato come broker un container docker creato con un file di configurazione custom in cui la porta 9001 viene attivata
+per la ricezione di connessioni con websocket ed offre persistent storage per persistere messaggi anche allo spegnimento del container. Nel container 
+gira mosquitto in versione 2.0.14
+
+#############################################################################
+SICUREZZA
+-uso di trasmissione crittografata per invio stati dal drone al broker. Questo perchè il drone trasmette su rete pubblica e non ha la potenza di calcolo 
+per poter utilizzare la sicurezza a livello network tipo VPN. 
+-per connessione al broker ciascun drone si autentica con username e password. Lo user drone può ricevere comandi solo dal proprio topic relativo ai comandi, e 
+scrivere gli stati solo sul proprio topic relativo agli stati. Questo per impedire la ricezione di comandi da altre fonti oltre al
+proprio telecomando e per impedire l'invio di stati da applicativi non autorizzati. 
+-telecomandi devono autenticarsi per connessione al broker con username e password e possono inviare solo messaggi con QOS 2 al topic di invio comandi del 
+drone specificato. Non possono ricevere messaggi. Questo per impedire l'invio di comandi ripetuti e per bloccare l'invio di comandi da applicativi non autorizzati.
+-il client che riceve gli stati si autentica con username e password. Può solo ricevere messaggi. Questo per impedire la ricezione dei dati da applicativi 
+non autorizzati. 
+
+############################################################################
+MQTT 5
+-Per dividere il carico dato dalla ricezione degli stati da tutti i droni e la loro scrittura sul db si potrebbe sfruttare una shared subscription 
+al topic 'protocolliIOT/stato/#'.
