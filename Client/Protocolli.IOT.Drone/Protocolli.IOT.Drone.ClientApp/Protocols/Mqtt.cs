@@ -80,7 +80,6 @@ namespace Protocolli.IOT.Drone.ClientApp.Protocols
             }
             
         }
-
-        
+       
     }
 }
