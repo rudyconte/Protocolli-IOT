@@ -10,7 +10,7 @@ Useremo come broker amqp un container docker avviato col comando:
 Useremo un topic di tipo direct poichè ogni drone ha una sola coda propria e consumerà dalla propria coda per inviare i dati via mqtt. 
 
 -----------------------------------
-Per l'invio dei comandi il telecomando sfrutta un exchange di tipo topic così da poter instradare i comandi verso le code dedicate di più droni da uno 
-stesso exchange. Poi attraverso i topic i messaggi verranno indirizzati verso una coda dedicata per ciascun drone. Il drone consumerà i messaggi dalla 
-coda a lui dedicata ed invierà l'ack dopo aver eseguito il comando.   
+Per l'invio dei comandi il telecomando sfrutta un exchange di tipo direct, questo perchè i comandi verranno inviati ad una coda dedicata per ciascun drone
+unicamente in base al suo id.
+Il drone consumerà i messaggi dalla coda a lui dedicata ed invierà l'ack dopo aver eseguito il comando.   
 

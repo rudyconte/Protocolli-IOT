@@ -22,6 +22,7 @@ namespace Protocolli.IOT.Drone.ClientApp.Protocols
             _channel = _connection.CreateModel();
             _routingKey = id;
 
+
             _channel.QueueDeclare(queue: _routingKey.ToString(),
                                  durable: false,
                                  exclusive: false,
@@ -40,6 +41,7 @@ namespace Protocolli.IOT.Drone.ClientApp.Protocols
                                  routingKey: _routingKey.ToString(),
                                  basicProperties: null,
                                  body: body);
+
             Console.WriteLine($"Published to rabbit status of drone {_routingKey}");
         }
     }
