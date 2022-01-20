@@ -10,10 +10,10 @@ namespace Protocolli.IOT.Drone.ClientApp
 {
     internal class Program
     {
-        static async Task Main(string[] args)
+        static void Main(string[] args)
         {
             List<IDroneStatus> devices = new();
-            IProtocol sender = new Mqtt();
+            List<AmqpConsumer> senders = new();
 
             Console.WriteLine("Quanti droni vuoi simulare?");
             int dronesNumber = int.Parse(Console.ReadLine());
@@ -21,10 +21,8 @@ namespace Protocolli.IOT.Drone.ClientApp
            
             for (int i = 0; i < dronesNumber; i++)
             {
-                devices.Add(new DroneStatusMqtt()
-                {
-                    DroneId = i
-                });
+                devices.Add(new DroneStatus(i));
+                senders.Add(new AmqpConsumer(i)); //consume queues for each drone
             }
 
       
@@ -32,7 +30,7 @@ namespace Protocolli.IOT.Drone.ClientApp
             {
                 for (int i = 0; i < devices.Count; i++)
                 {
-                    await sender.SendAsync(devices[i]);
+                    devices[i].EnqueueStatus();
                 }
 
                 Thread.Sleep(2000);

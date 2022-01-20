@@ -1,0 +1,16 @@
+AMQP verrà utilizzato per salvare su delle code gli stati simulati da ciascun drone prima dell'invio al server tramite mqtt. 
+Quindi ciascun drone anzichè inviare direttamente gli stati simulati li pubblicherà su una coda. 
+Ciascun drone simulato avrà una propria coda ed un servizio che controlla lo stato della connessione. Se la connessione è attiva il servizio leggerà gli 
+stati in coda e li invierà al server attraverso mqtt. 
+Viene utilizzata questa architettura per garantire che non vengano persi dati in caso di mancanza di connessione. 
+
+Useremo come broker amqp un container docker avviato col comando:
+	docker run --rm -it --hostname my-rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-management
+
+Useremo un topic di tipo direct poichè ogni drone ha una sola coda propria e consumerà dalla propria coda per inviare i dati via mqtt. 
+
+-----------------------------------
+Per l'invio dei comandi il telecomando sfrutta un exchange di tipo topic così da poter instradare i comandi verso le code dedicate di più droni da uno 
+stesso exchange. Poi attraverso i topic i messaggi verranno indirizzati verso una coda dedicata per ciascun drone. Il drone consumerà i messaggi dalla 
+coda a lui dedicata ed invierà l'ack dopo aver eseguito il comando.   
+

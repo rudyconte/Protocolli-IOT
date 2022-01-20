@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uTYzVbVoWV/rBvUYqVeSPeu9qR8+TTlHcBl1hBJkfBnSw8ff2tAIJjyUsgAECrg+YYMH+3EvXUHcHHdkUWnU5A==",
+  "dgSpecHash": "7Inq6mxVLIaObHZaVIMeWtKaKVpinPIK7FobU546VvYwj7uzaCiJyfGZcmuu/P3dSskWWQg3Qv1i0/8js+7KYw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\rconte\\Documents\\protocolli_IOT\\Protocolli-IOT\\Telecomando\\Protocolli.IOT.Drone.Telecomando\\Protocolli.IOT.Drone.Telecomando\\Protocolli.IOT.Drone.Telecomando.csproj",
+  "projectFilePath": "C:\\Users\\rconte\\Documents\\protocolli_IOT\\Es-IOT\\Protocolli-IOT\\Telecomando\\Protocolli.IOT.Drone.Telecomando\\Protocolli.IOT.Drone.Telecomando\\Protocolli.IOT.Drone.Telecomando.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rconte\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\rconte\\.nuget\\packages\\mqttnet\\3.1.1\\mqttnet.3.1.1.nupkg.sha512",

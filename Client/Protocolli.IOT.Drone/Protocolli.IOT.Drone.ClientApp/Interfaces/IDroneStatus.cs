@@ -11,5 +11,7 @@ namespace Protocolli.IOT.Drone.ClientApp.Interfaces
     {
         public string SimulateDeviceStatus();
         public int GetDroneId();
+
+        public void EnqueueStatus();//added for amqp
     }
 }

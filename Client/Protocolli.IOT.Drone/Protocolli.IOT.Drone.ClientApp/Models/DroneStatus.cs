@@ -1,5 +1,8 @@
 ﻿using Protocolli.IOT.Drone.ClientApp.Interfaces;
+using Protocolli.IOT.Drone.ClientApp.Protocols;
+using RabbitMQ.Client;
 using System;
+using System.Text;
 using System.Text.Json;
 
 namespace Protocolli.IOT.Drone.ClientApp.Models
@@ -8,12 +11,26 @@ namespace Protocolli.IOT.Drone.ClientApp.Models
     {
         private readonly Random _random = new();
         private readonly Position _position = new();
+        private readonly AmqpEnqueuer _enqueuer;
 
         public int DroneId { get; set; }
         public Position Position { get; set; }
         public float Velocity { get; set; }
         public float Battery { get; set; }
         public long Timestamp { get; set; }
+
+        public DroneStatus()
+        {
+
+        }
+
+        //connect to rabbit and create queue with name = DroneId
+        public DroneStatus(int id)
+        {
+            DroneId = id;
+            _enqueuer = new(id);
+
+        }
 
         public int GetDroneId()
         {
@@ -28,7 +45,16 @@ namespace Protocolli.IOT.Drone.ClientApp.Models
             Battery = _random.Next(0, 100);
             Position = _position.SimulatePosition();
 
-            return JsonSerializer.Serialize(this);
+            string status = JsonSerializer.Serialize(this);
+
+            return status;
+        }
+
+        //simulate status and add it to the queue
+        public void EnqueueStatus()
+        {
+            string status = this.SimulateDeviceStatus();
+            _enqueuer.Enqueue(status);
         }
     }
 }
